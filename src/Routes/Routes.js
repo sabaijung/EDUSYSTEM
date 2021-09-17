@@ -2,8 +2,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateLayout from "../Layout/Layout";
-import AuthenLayout from "../Layout/public/AuthenLayout";
-import Authentication from "../Views/Authen/Authentication";
+//import AuthenLayout from "../Layout/public/AuthenLayout";
+//import Authentication from "../Views/Authen/Authentication";
 //import NotFound from "../views/errors/NotFound";
 import { connect } from "react-redux";
 import { AUTHEN, USERINFO } from "../Actions/authen";
@@ -11,6 +11,8 @@ import { AUTHEN, USERINFO } from "../Actions/authen";
 import AttendClass from "../Views/AttendClass/AttendClass";
 import TechSchedule from "../Views/TechSchedule/TechSchedule";
 import ShowMajor from "../Views/Setting/Major/ShowMajor";
+import ShowStudent from "../Views/Setting/Student/ShowStudent";
+import ShowFaculty from "../Views/Setting/Faculty/ShowFaculty";
 
 function Routers(props) {
   return (
@@ -23,6 +25,8 @@ function Routers(props) {
               <Route path="/attendClass" component={AttendClass} />
               <Route path="/techSchedule" component={TechSchedule} />
               <Route path="/showMajor" component={ShowMajor} />
+              <Route path="/showFaculty" component={ShowFaculty} />
+              <Route path="/showStudent" component={ShowStudent} />
             </Switch>
           </PrivateLayout>
         </Route>
