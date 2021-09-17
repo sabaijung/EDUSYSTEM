@@ -6,12 +6,13 @@ export default function ShowMajor() {
   const [data, setData] = useState([]);
 
   useEffect(fetchData);
+
   async function fetchData() {
     const res = await GetAllMajor();
     if (res.statusCode == "001") {
       setData(res.data);
     }
-    console.log("res:" + res);
+    // console.log("res:" + res);
   }
 
   return (
