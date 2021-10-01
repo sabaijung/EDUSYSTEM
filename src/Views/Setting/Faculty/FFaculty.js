@@ -51,6 +51,11 @@ class FFaculty extends Component {
                     </div>
                   </div>
                 </div>
+                <div className="row">
+                  <button class="btn btn-primary">บันทึกข้อมูล</button>
+                  &nbsp;
+                  <button class="btn btn-secondary">ล้างข้อมูล</button>
+                </div>
               </div>
             </div>
           </div>
