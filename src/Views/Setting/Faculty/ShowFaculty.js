@@ -1,7 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { GetAllFaculty } from "../../../services/faculty.service";
 
 export default function ShowFaculty() {
+  const history = useHistory();
   const [data, setData] = useState([]);
 
   useEffect(fetchData);
@@ -22,6 +24,16 @@ export default function ShowFaculty() {
               <h4>ข้อมูลคณะ</h4>
             </div>
             <div className="card-body">
+              <div>
+                <button
+                  class="btn btn-primary"
+                  onClick={(e) => {
+                    history.push("/FFaculty");
+                  }}
+                >
+                  เพิ่มข้อมูล
+                </button>
+              </div>
               {/** สำหรับแสดงรายการข้อมูล */}
               <div className="form-group row">
                 <table className="table table-bordered">
