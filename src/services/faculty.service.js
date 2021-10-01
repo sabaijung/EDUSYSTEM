@@ -9,3 +9,15 @@ export async function GetAllFaculty() {
     console.log("error", error);
   }
 }
+
+export async function SaveFaculty(data) {
+  try {
+    const response = await Instance.post(
+      URLLOCAL + "Faculty/SaveFaculty",
+      data
+    );
+    return await response.data;
+  } catch (error) {
+    console.log("error", error);
+  }
+}
