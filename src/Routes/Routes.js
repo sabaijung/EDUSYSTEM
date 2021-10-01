@@ -13,6 +13,7 @@ import TechSchedule from "../Views/TechSchedule/TechSchedule";
 import ShowMajor from "../Views/Setting/Major/ShowMajor";
 import ShowStudent from "../Views/Setting/Student/ShowStudent";
 import ShowFaculty from "../Views/Setting/Faculty/ShowFaculty";
+import FFaculty from "../Views/Setting/Faculty/FFaculty";
 
 function Routers(props) {
   return (
@@ -27,6 +28,7 @@ function Routers(props) {
               <Route path="/showMajor" component={ShowMajor} />
               <Route path="/showFaculty" component={ShowFaculty} />
               <Route path="/showStudent" component={ShowStudent} />
+              <Route path="/fFaculty" component={FFaculty} />
             </Switch>
           </PrivateLayout>
         </Route>
