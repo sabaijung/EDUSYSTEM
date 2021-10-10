@@ -1,39 +1,63 @@
 import React from "react";
 import { Fragment, Component } from "react";
-import { Formik, Form } from "formik";
-import { SaveFaculty } from "../../../services/faculty.service";
+import { Formik, Form, ErrorMessage } from "formik";
+import { saveFaculty, updateFaculty } from "../../../services/faculty.service";
 import Schema from "./ValidateFaculty";
+import Swal from "sweetalert2";
 
 class FFaculty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      facultyCode: 0,
+      facultyName: "",
+      isUsed: "",
     };
   }
 
-  async Save(data) {
-    this.setState({ loading: true });
-    const res = await SaveFaculty(data);
+  async action(data) {
+    let res = "";
+    if (data.facultyCode === 0) {
+      res = await saveFaculty(data);
+    } else {
+      res = await updateFaculty(data.facultyCode, data);
+    }
+
     if (res !== undefined) {
-      if (res.statusCode === 1) {
+      if (res.statusCode === "003") {
         Swal.fire({
           icon: "success",
           title: "บันทึกข้อมูลสำเร็จ",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 500,
         });
+        this.props.history.push("/showFaculty");
       } else {
         Swal.fire({
           icon: "warning",
           title: "บันทึกข้อมูลไม่สำเร็จ",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 500,
         });
       }
     }
-    this.setState({ loading: false });
   }
+
+  async componentWillMount() {
+    //console.log("t:" + JSON.stringify(this.props.location.state));
+    if (this.props.location.state !== undefined) {
+      let param = this.props.location.state.value;
+      this.setState({
+        facultyCode: param.facultyCode,
+        facultyName: param.facultyName,
+        isUsed: param.isUsed,
+      });
+    } else {
+      console.log("444");
+    }
+  }
+
+  componentWillUnmount() {}
 
   render() {
     return (
@@ -46,86 +70,129 @@ class FFaculty extends Component {
               </div>
               <div className="card-body">
                 <Formik
-                  validationSchema={Schema}
-                  initialValues={{
-                    facultyName: "",
-                    isUsed: "",
+                  // validationSchema={Schema}
+                  validate={(values) => {
+                    const errors = {};
+                    if (!values.facultyName) {
+                      errors.facultyName = "จำเป็นต้องระบุข้อมูล";
+                    }
+
+                    if (!values.isUsed) {
+                      errors.isUsed = "จำเป็นต้องระบุข้อมูล";
+                    }
+                    return errors;
                   }}
-                  enableReinitialize={true}
-                  onSubmit={(value, { resetForm }) => {
-                    let data = {
-                      facultyName: value.facultyName,
-                      isUsed: value.isUsed,
-                    };
-                    this.Save(data);
+                  initialValues={{
+                    facultyCode: this.state.facultyCode,
+                    facultyName: this.state.facultyName,
+                    isUsed: this.state.isUsed,
+                  }}
+                  // enableReinitialize={true}
+                  onSubmit={(values, { resetForm }) => {
+                    console.log("values:" + values);
+                    this.action(values);
                     resetForm();
                   }}
                 >
-                  {({ errors, touched, handleBlur, setFieldValue, values }) => (
-                    <Form>
+                  {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
                       <div className="form-group row">
                         <div className="col-md-6">
+                          <input
+                            type="hidden"
+                            name="facultyCode"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.facultyCode}
+                          />
                           <label>ชื่อคณะ</label>
                           <input
-                            type="text"
                             className="form-control"
+                            type="text"
+                            name="facultyName"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
                             value={values.facultyName}
-                            onChange={(value) => {
-                              setFieldValue("facultyName", value);
-                            }}
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="facultyName"
+                            style={{ color: "red" }}
                           />
                         </div>
                       </div>
-                      <div className="form-group row">
-                        <div className="col-md-6">
-                          <label>สถานะ</label>
-                          <br />
-                          <div className="form-check form-check-inline">
-                            <input
-                              style={{ width: "20px", height: "20px" }}
-                              className="form-check-input"
-                              type="radio"
+                      {
+                        <div className="form-group row">
+                          <div className="col-md-6">
+                            <label>สถานะ</label>
+                            <br />
+                            <div className="form-check form-check-inline">
+                              <input
+                                style={{ width: "20px", height: "20px" }}
+                                className="form-check-input"
+                                type="radio"
+                                name="isUsed"
+                                id="open"
+                                value="1"
+                                onChange={handleChange}
+                                defaultChecked={values.isUsed === "1"}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="open"
+                              >
+                                เปิดสอน
+                              </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                              <input
+                                style={{ width: "20px", height: "20px" }}
+                                className="form-check-input"
+                                type="radio"
+                                name="isUsed"
+                                id="close"
+                                value="0"
+                                onChange={handleChange}
+                                defaultChecked={values.isUsed === "0"}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="close"
+                              >
+                                ปิดการสอน
+                              </label>
+                            </div>
+                            <ErrorMessage
+                              component="div"
                               name="isUsed"
-                              id="open"
-                              value="1"
-                              onChange={(value) => {
-                                setFieldValue("isUsed", value);
-                              }}
+                              style={{ color: "red" }}
                             />
-                            <label className="form-check-label" htmlFor="open">
-                              เปิดสอน
-                            </label>
-                          </div>
-                          <div className="form-check form-check-inline">
-                            <input
-                              style={{ width: "20px", height: "20px" }}
-                              className="form-check-input"
-                              type="radio"
-                              name="isUsed"
-                              id="close"
-                              value="0"
-                              onChange={(value) => {
-                                setFieldValue("isUsed", value);
-                              }}
-                            />
-                            <label className="form-check-label" htmlFor="close">
-                              ปิดการสอน
-                            </label>
                           </div>
                         </div>
-                      </div>
+                      }
+
                       <div className="row">
                         <button
-                          class="btn btn-primary"
+                          className="btn btn-primary"
                           type="submit"
-                          disabled={this.state.loading}
+                          disabled={isSubmitting}
                         >
                           บันทึกข้อมูล
                         </button>
                         &nbsp;
-                        <button class="btn btn-secondary">ล้างข้อมูล</button>
+                        <button className="btn btn-secondary">
+                          ล้างข้อมูล
+                        </button>
                       </div>
-                    </Form>
+                    </form>
                   )}
                 </Formik>
               </div>
