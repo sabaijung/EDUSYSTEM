@@ -1,19 +1,17 @@
-import React from "react"
+import React from "react";
 
-export default class Footer extends React.Component{
-
-    render(){
-        return (
-            <div>
-                    <footer class="main-footer">
-                        <div class="footer-left">
-                        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
-                        </div>
-                        <div class="footer-right">
-                        2.3.0
-                        </div>
-                    </footer>
-            </div>
-        )
-    }
+export default class Footer extends React.Component {
+  render() {
+    return (
+      <div>
+        <footer className="main-footer">
+          <div className="footer-left">
+            Copyright &copy; 2021 <div className="bullet"></div> Design By{" "}
+            <a href="#">Miss Sabaiprae Ardsri</a>
+          </div>
+          <div className="footer-right">0.0.1</div>
+        </footer>
+      </div>
+    );
+  }
 }
