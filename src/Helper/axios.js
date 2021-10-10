@@ -4,9 +4,18 @@ import { URLLOCAL } from "../Helper/baseURL";
 export default axios.create({
   baseURL: URLLOCAL,
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
     Accept: "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 });
+
+/**
+ *  headers: {
+    "Content-Type": "application/x-www-form-urlencoded,application/json",
+    Accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+ */
