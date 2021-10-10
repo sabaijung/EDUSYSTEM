@@ -3,6 +3,7 @@ import kru_logo from "../img/kru.png";
 import { Route } from "react-router";
 import Profile from "../Views/Profile/Profile";
 import { Link, NavLink } from "react-router-dom";
+import SVGsetting from "../assets/svgs/SVGsetting";
 
 export default class Sidebar extends React.Component {
   render() {
@@ -131,84 +132,68 @@ export default class Sidebar extends React.Component {
                       */}
 
                 <li className="menu-header">จัดการห้องเรียน</li>
-
                 <NavLink to="/attendClass" className="nav-link active">
-                  <i className="far fa-square"></i>
                   <span> เช็คชื่อเข้าชั้นเรียน</span>
                 </NavLink>
-
                 <NavLink to="/techSchedule" className="nav-link">
-                  <i className="far fa-square"></i>
                   <span> ตารางสอน</span>
                 </NavLink>
-
                 <NavLink to="/sendGrade" className="nav-link">
-                  <i className="far fa-square"></i>
                   <span> ส่งผลการเรียน</span>
                 </NavLink>
-
                 <NavLink to="/showdata" className="nav-link">
-                  <i className="far fa-square"></i>
                   <span> ชั้นเรียนที่ปรึกษา</span>
                 </NavLink>
                 <NavLink to="/showTimesheet" className="nav-link">
-                  <i className="far fa-square"></i>
                   <span> บันทึกการปฏิบัติงาน</span>
                 </NavLink>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
                     href="#"
-                    class="nav-link has-dropdown"
+                    className="nav-link has-dropdown"
                     data-toggle="dropdown"
                   >
-                    <i class="fas fa-columns"></i> <span>ตั้งค่า</span>
+                    <SVGsetting />
+                    <span>&nbsp; ตั้งค่า</span>
                   </a>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li>
                       <NavLink to="/fCurriculumn" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span>โครงสร้างหลักสูตร</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/formCurriculumn" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> แผนการเรียน</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/showdata" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> จัดตารางสอน</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/FRoomType" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> ประเภทห้องเรียน</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/showRoom" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> ห้องเรียน</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/showFaculty" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> ข้อมูลคณะ</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/showMajor" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> สาขาวิชา</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/showStudent" className="nav-link">
-                        <i className="far fa-square"></i>
                         <span> ข้อมูลนักศึกษา</span>
                       </NavLink>
                     </li>
