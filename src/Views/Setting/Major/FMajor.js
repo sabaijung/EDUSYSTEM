@@ -2,17 +2,20 @@ import React from "react";
 import { Fragment, Component } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import DropdownList from "../../../components/DropdownList";
-import { saveFaculty, updateFaculty } from "../../../services/faculty.service";
-import { getAllFaculty } from "../../../services/major.service";
+import {
+  getAllFaculty,
+  saveMajor,
+  updateMajor,
+} from "../../../services/major.service";
 import Swal from "sweetalert2";
 
 class FMajor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      majorCode: 0,
+      majorCode: "0",
       majorName: "",
-      facultyCode: 0,
+      facultyCode: "",
       isUsed: "",
       faculty: [],
     };
@@ -31,10 +34,10 @@ class FMajor extends Component {
 
   async action(data) {
     let res = "";
-    if (data.facultyCode === 0) {
-      res = await saveFaculty(data);
+    if (data.majorCode === "0") {
+      res = await saveMajor(data);
     } else {
-      res = await updateFaculty(data.facultyCode, data);
+      res = await updateMajor(data.majorCode, data);
     }
 
     if (res !== undefined) {
@@ -45,7 +48,7 @@ class FMajor extends Component {
           showConfirmButton: false,
           timer: 500,
         });
-        this.props.history.push("/showFaculty");
+        this.props.history.push("/showMajor");
       } else {
         Swal.fire({
           icon: "warning",
@@ -100,6 +103,7 @@ class FMajor extends Component {
                     return errors;
                   }}
                   initialValues={{
+                    majorCode: this.state.majorCode,
                     majorName: this.state.majorName,
                     facultyCode: this.state.facultyCode,
                     isUsed: this.state.isUsed,
@@ -126,10 +130,10 @@ class FMajor extends Component {
                         <div className="col-md-6">
                           <input
                             type="hidden"
-                            name="facultyCode"
+                            name="majorCode"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.facultyCode}
+                            value={values.majorCode}
                           />
                           <label>ชื่อสาขาวิชา</label>
                           <input
@@ -159,7 +163,7 @@ class FMajor extends Component {
                             value={values.faculty}
                             onChange={async (v) => {
                               setFieldValue("faculty", v);
-                              this.setState({ facultyCode: v });
+                              this.setState({ facultyCode: v.facultyCode });
                             }}
                             onBlur={handleBlur}
                           />
