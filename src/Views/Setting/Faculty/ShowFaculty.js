@@ -25,9 +25,11 @@ export default function ShowFaculty() {
   useEffect(fetchData, [pageNo, pageSize, search]);
 
   async function fetchData() {
+    // ดึงข้อมูลมาแสดงผล
     const res = await getAllFaculty(pageSize, pageNo, search);
     if (res.statusCode == "001") {
       let pagination = res.pagin;
+      // console.log("res=" + JSON.stringify(res.pagin));
       if (pagination.totalRow > 0) {
         setData(res.data);
         setPage({
@@ -36,19 +38,16 @@ export default function ShowFaculty() {
           totalRow: pagination.totalRow,
         });
       }
-    } else {
     }
   }
 
   const searchData = (e) => {
     e.preventDefault();
-    setData([]);
     fetchData();
   };
 
   const clearData = (e) => {
     e.preventDefault();
-    setData([]);
     setSearch("");
     setPageNo(1);
     setPageSize(10);
@@ -134,7 +133,7 @@ export default function ShowFaculty() {
                             />
                           </button>
                           <button
-                            type="reset"
+                            type="button"
                             className="btn btn-secondary"
                             onClick={(e) => {
                               clearData(e);
