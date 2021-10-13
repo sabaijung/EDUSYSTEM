@@ -63,9 +63,11 @@ class FMajor extends Component {
   async componentWillMount() {
     if (this.props.location.state !== undefined) {
       let param = this.props.location.state.value;
+      console.log("param:" + JSON.stringify(param.facultyCode));
       this.setState({
+        majorCode: param.majorCode,
+        majorName: param.majorName,
         facultyCode: param.facultyCode,
-        facultyName: param.facultyName,
         isUsed: param.isUsed,
       });
     } else {
@@ -140,10 +142,7 @@ class FMajor extends Component {
                             className="form-control"
                             type="text"
                             name="majorName"
-                            onChange={(e) =>
-                              setFieldValue("majorName", e.target.value)
-                            }
-                            // onChange={handleChange}
+                            onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.majorName}
                           />
@@ -165,10 +164,10 @@ class FMajor extends Component {
                             placeholder={"-- กรุณาเลือกชื่อคณะ --"}
                             value={values.faculty}
                             onChange={async (v) => {
-                              setFieldValue("faculty", v.facultyCode);
-                              this.setState({ facultyCode: v.facultyCode });
+                              setFieldValue("facultyCode", v.facultyCode);
                             }}
                             onBlur={handleBlur}
+                            onSelect={handleChange}
                           />
                           <ErrorMessage
                             component="div"
