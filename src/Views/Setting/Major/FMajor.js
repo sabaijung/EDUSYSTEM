@@ -110,7 +110,7 @@ class FMajor extends Component {
                   }}
                   enableReinitialize={true}
                   onSubmit={(values, { resetForm }) => {
-                    console.log("values:" + values);
+                    console.log("values:" + JSON.stringify(values));
                     this.action(values);
                     resetForm();
                   }}
@@ -140,7 +140,10 @@ class FMajor extends Component {
                             className="form-control"
                             type="text"
                             name="majorName"
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              setFieldValue("majorName", e.target.value)
+                            }
+                            // onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.majorName}
                           />
@@ -162,7 +165,7 @@ class FMajor extends Component {
                             placeholder={"-- กรุณาเลือกชื่อคณะ --"}
                             value={values.faculty}
                             onChange={async (v) => {
-                              setFieldValue("faculty", v);
+                              setFieldValue("faculty", v.facultyCode);
                               this.setState({ facultyCode: v.facultyCode });
                             }}
                             onBlur={handleBlur}
