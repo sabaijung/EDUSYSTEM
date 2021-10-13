@@ -136,10 +136,33 @@ export default function ShowMajor() {
                         <td>{value.majorName}</td>
                         <td>{value.isUsed == 1 ? "ใช้งาน" : "ไม่ใช้งาน"}</td>
                         <td>
-                          {" "}
-                          <button className="btn btn-warning">
-                            แก้ไข
-                          </button>{" "}
+                          <button
+                            className="btn btn-warning btn-sm"
+                            onClick={(e) => {
+                              history.push("/fMajor", { value: value });
+                            }}
+                          >
+                            <Icon
+                              icon="pencil"
+                              viewBox="0 0 16 16"
+                              color="#FDFEFE"
+                              size={16}
+                              className=""
+                            />
+                          </button>
+                          &nbsp;
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={(e) => {}}
+                          >
+                            <Icon
+                              icon="trash"
+                              viewBox="0 0 16 16"
+                              color="#FDFEFE"
+                              size={16}
+                              className=""
+                            />
+                          </button>
                         </td>
                       </tr>
                     ))}
