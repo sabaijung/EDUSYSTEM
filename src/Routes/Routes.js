@@ -15,6 +15,8 @@ import ShowStudent from "../Views/Setting/Student/ShowStudent";
 import ShowFaculty from "../Views/Setting/Faculty/ShowFaculty";
 import FFaculty from "../Views/Setting/Faculty/FFaculty";
 import FMajor from "../Views/Setting/Major/FMajor";
+import FProfile from "../Views/Profile/Profile";
+import FTeacher from "../Views/Setting/Teacher/FTeacher";
 
 function Routers(props) {
   return (
@@ -31,6 +33,8 @@ function Routers(props) {
               <Route path="/showStudent" component={ShowStudent} />
               <Route path="/fFaculty" component={FFaculty} />
               <Route path="/fMajor" component={FMajor} />
+              <Route path="/profile" component={FProfile} />
+              <Route path="/fTeacher" component={FTeacher} />
             </Switch>
           </PrivateLayout>
         </Route>
