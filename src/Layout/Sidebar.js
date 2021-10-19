@@ -197,6 +197,11 @@ export default class Sidebar extends React.Component {
                         <span> ข้อมูลนักศึกษา</span>
                       </NavLink>
                     </li>
+                    <li>
+                      <NavLink to="/fTeacher" className="nav-link">
+                        <span> ข้อมูลอาจารย์</span>
+                      </NavLink>
+                    </li>
                   </ul>
                 </li>
               </ul>
