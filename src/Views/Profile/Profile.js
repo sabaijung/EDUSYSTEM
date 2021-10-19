@@ -27,6 +27,7 @@ export default class Profile extends React.Component {
         initialName: "นาง",
       },
     ];
+
     this.setState({
       initial: strInitial,
     });
@@ -105,8 +106,7 @@ export default class Profile extends React.Component {
                           placeholder={"--กรุณาเลือก--"}
                           value={values.initial}
                           onChange={async (v) => {
-                            setFieldValue("initialID", v);
-                            this.setState({ initialID: v.initialID });
+                            setFieldValue("initialID", v.initialID);
                           }}
                           onBlur={handleBlur}
                         />
@@ -260,8 +260,10 @@ export default class Profile extends React.Component {
 
                     <div className="form-group row">
                       <div className="col-sm-12 text-center">
-                        <button class="btn btn-primary">บันทึก</button> &nbsp;
-                        &nbsp;
+                        <button type="submit" class="btn btn-primary">
+                          บันทึก
+                        </button>{" "}
+                        &nbsp; &nbsp;
                         <button class="btn btn-secondary">ล้างข้อมูล</button>
                       </div>
                     </div>
