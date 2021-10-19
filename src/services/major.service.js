@@ -13,9 +13,17 @@ export async function getAllFaculty() {
   }
 }
 
-export async function GetAllMajor() {
+export async function GetAllMajor(pageSize, currentPage, search) {
   try {
-    const response = await Instance.get(URLLOCAL + "Major/GetMajor");
+    const response = await Instance.get(
+      URLLOCAL +
+        "Major/GetMajor?pageSize=" +
+        pageSize +
+        "&currentPage=" +
+        currentPage +
+        "&search=" +
+        search
+    );
     //.log("re:" + response.data);
     return await response.data;
   } catch (error) {
