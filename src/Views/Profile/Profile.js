@@ -168,9 +168,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="name"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.name}
+                          onChange={(v) => {
+                            setFieldValue("name", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -180,9 +181,11 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="lastName"
-                          className="form-control"
                           onChange={handleChange}
                           value={values.lastName}
+                          onChange={(v) => {
+                            setFieldValue("lastName", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -258,9 +261,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="phone"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.phone}
+                          onChange={(v) => {
+                            setFieldValue("phone", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -270,9 +274,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="email"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.email}
+                          onChange={(v) => {
+                            setFieldValue("email", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -295,9 +300,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="address"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.address}
+                          onChange={(v) => {
+                            setFieldValue("address", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -307,9 +313,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="districtID"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.districtID}
+                          onChange={(v) => {
+                            setFieldValue("districtID", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -319,9 +326,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="amphur"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.amphur}
+                          onChange={(v) => {
+                            setFieldValue("amphur", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -331,9 +339,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="province"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.province}
+                          onChange={(v) => {
+                            setFieldValue("province", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -343,9 +352,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="postcode"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.postcode}
+                          onChange={(v) => {
+                            setFieldValue("postcode", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -360,9 +370,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="text"
                           name="username"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.username}
+                          onChange={(v) => {
+                            setFieldValue("username", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -372,9 +383,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="password"
                           name="password"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.password}
+                          onChange={(v) => {
+                            setFieldValue("password", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
@@ -384,9 +396,10 @@ export default class Profile extends React.Component {
                         <Input
                           type="password"
                           name="confirmPassword"
-                          className="form-control"
-                          onChange={handleChange}
                           value={values.confirmPassword}
+                          onChange={(v) => {
+                            setFieldValue("confirmPassword", v);
+                          }}
                           errors={errors}
                           touched={touched}
                         />
