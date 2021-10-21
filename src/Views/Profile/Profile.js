@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import Input from "../../components/Input";
 import DropdownList from "../../components/DropdownList";
+import SearchAddress from "../../components/SearchAddress";
 import Swal from "sweetalert2";
 import { monthTH } from "../../Data/month-th.json";
 import { saveStudent } from "../../services/student.service";
@@ -286,10 +287,26 @@ export default class Profile extends React.Component {
 
                     <div className="form-group row">
                       <div className="col-md-12">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="ค้นหาที่อยู่"
+                        <SearchAddress
+                          onChange={(value) => {
+                            setFieldValue("use_address", false);
+                            if (value !== "") {
+                              setFieldValue(
+                                "districtID",
+                                value.subdistrictName
+                              );
+                              setFieldValue("amphur", value.districtName);
+                              setFieldValue("province", value.provinceName);
+                              setFieldValue("postcode", value.postCode);
+                            } else {
+                              setFieldValue("districtID", "");
+                              setFieldValue("amphur", "");
+                              setFieldValue("province", "");
+                              setFieldValue("postcode", "");
+                            }
+                          }}
+                          name="SearchAddress"
+                          placeholder="ค้นหา"
                         />
                       </div>
                     </div>
